@@ -64,6 +64,7 @@ After running the script, you can find summary statistics in the console output,
 
 ## Baseline Results
 
+The table below presents baseline performance metrics for various architectural approaches, encompassing combined mean absolute error (MAE) and weighted mean absolute percentage error (wMAPE), alongside specific line-of-sight (LoS) and non-line-of-sight (NLoS) metrics. These results are published in our paper, which can be accessed [here]().
 
 | Architecture | Condition   | Combined MAE | Combined wMAPE | LoS MAE | NLoS MAE | LoS wMAPE | NLoS wMAPE |
 |--------------|-------------|--------------|----------------|---------|----------|-----------|------------|
