@@ -5,31 +5,50 @@ from numba import jit
 import argparse
 import os
 import pandas as pd
+from tqdm import tqdm 
 
 def MAE(y_true, y_pred):
     return np.mean(np.abs(y_true - y_pred))
 
 def calc_mae(true_path, pred_path):
-    pred_noisemap = np.array(
+    pred_noisemap = (1 - np.array(
         Image.open(pred_path).convert("L"),
-        dtype=np.int32
-    )
-    true_noisemap = np.array(
+        dtype=np.float32
+    ) / 255) * 100
+
+    true_noisemap = (1 - np.array(
         Image.open(true_path).convert("L"),
-        dtype=np.int32
-    )
+        dtype=np.float32
+    ) / 255) * 100
+        
     return MAE(true_noisemap, pred_noisemap)
 
 def calc_mape(true_path, pred_path):
-    pred_noisemap = np.array(
+    # Load and process the predicted and true noise maps
+    pred_noisemap = (1 - np.array(
         Image.open(pred_path).convert("L"),
-        dtype=np.int32
-    )
-    true_noisemap = np.array(
+        dtype=np.float32
+    ) / 255) * 100
+    true_noisemap = (1 - np.array(
         Image.open(true_path).convert("L"),
         dtype=np.float32
-    )
-    return np.mean(np.abs((true_noisemap - pred_noisemap) / true_noisemap)) * 100
+    ) / 255) * 100
+
+    # Initialize an error map with zeros
+    error_map = np.zeros_like(true_noisemap, dtype=np.float32)
+
+    # Find indices where true noisemap is not 0
+    nonzero_indices = true_noisemap != 0
+
+    # Calculate percentage error where true noisemap is not 0
+    error_map[nonzero_indices] = np.abs((true_noisemap[nonzero_indices] - pred_noisemap[nonzero_indices]) / true_noisemap[nonzero_indices]) * 100
+
+    # For positions where true noisemap is 0 but pred noisemap is not, set error to 100%
+    zero_true_indices = (true_noisemap == 0) & (pred_noisemap != 0)
+    error_map[zero_true_indices] = 100
+
+    # Calculate the MAPE over the whole image, ignoring positions where both are 0
+    return np.mean(error_map)
 
 
 @jit(nopython=True)
@@ -83,32 +102,45 @@ def masked_mae(true_labels, predictions):
     predictions = predictions[mask]
     
     # Compute the MAE and return
-    return np.mean(np.abs(true_labels - predictions))
+    return MAE(true_labels, predictions)
 
-def masked_error(true_labels, predictions):
+def masked_mape(true_labels, predictions):
     # Convert to numpy arrays
     true_labels = np.array(true_labels)
     predictions = np.array(predictions)
-    
-    # Create a mask where true_labels are not equal to -1
+
+    # Create a mask to exclude -1
     mask = true_labels != -1
     
-    # Filter arrays with the mask
-    true_labels = true_labels[mask]
-    predictions = predictions[mask]
+    # Apply the mask to filter arrays
+    true_labels_filtered = true_labels[mask]
+    predictions_filtered = predictions[mask]
     
-    return np.abs(true_labels - predictions)
+    # Initialize an error map with zeros
+    error_map = np.zeros_like(true_labels_filtered, dtype=np.float32)
 
+    # Find indices where true noisemap is not 0
+    nonzero_indices = true_labels_filtered != 0
+
+    # Calculate percentage error where true noisemap is not 0
+    error_map[nonzero_indices] = np.abs((true_labels_filtered[nonzero_indices] - predictions_filtered[nonzero_indices]) / true_labels_filtered[nonzero_indices]) * 100
+
+    # For positions where true noisemap is 0 but pred noisemap is not, set error to 100%
+    zero_true_indices = (true_labels_filtered == 0) & (predictions_filtered != 0)
+    error_map[zero_true_indices] = 100
+
+    # Calculate the MAPE over the whole image, ignoring positions where both are 0
+    return np.mean(error_map)
 
 def calculate_sight_error(true_path, pred_path, osm_path):
-    true_soundmap = (255 - np.array(
-        Image.open(true_path).convert("L"),
-        dtype=np.int16
-    )) / 255 * 100
-    pred_soundmap = (255 - np.array(
+    pred_soundmap = (1 - np.array(
         Image.open(pred_path).convert("L"),
-        dtype=np.int16
-    )) / 255 * 100
+        dtype=np.float32
+    ) / 255) * 100
+    true_soundmap = (1 - np.array(
+        Image.open(true_path).convert("L"),
+        dtype=np.float32
+    ) / 255) * 100
     _, true_pixels_not_in_sight = compute_visibility(osm_path)
 
     in_sight_soundmap = true_soundmap.copy()
@@ -127,7 +159,7 @@ def calculate_sight_error(true_path, pred_path, osm_path):
                 in_sight_soundmap[y, x] = -1
                 in_sight_pred_soundmap[y, x] = -1
 
-    return masked_mae(in_sight_soundmap, in_sight_pred_soundmap), masked_mae(not_in_sight_soundmap, not_in_sight_pred_soundmap)
+    return masked_mae(in_sight_soundmap, in_sight_pred_soundmap), masked_mae(not_in_sight_soundmap, not_in_sight_pred_soundmap), masked_mape(in_sight_soundmap, in_sight_pred_soundmap), masked_mape(not_in_sight_soundmap, not_in_sight_pred_soundmap)
 
 
 def evaluate_sample(true_path, pred_path, osm_path=None) -> (float, float, float, float):
@@ -136,8 +168,8 @@ def evaluate_sample(true_path, pred_path, osm_path=None) -> (float, float, float
 
     mae_in_sight, mae_not_in_sight = None, None
     if osm_path is not None:
-        mae_in_sight, mae_not_in_sight = calculate_sight_error(true_path, pred_path, osm_path)
-    return mae, mape, mae_in_sight, mae_not_in_sight
+        mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight = calculate_sight_error(true_path, pred_path, osm_path)
+    return mae, mape, mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight
 
 ## main function for evaluation
 if __name__ == "__main__":
@@ -152,25 +184,18 @@ if __name__ == "__main__":
     pred_dir = args.pred_dir
     output = args.output
 
-
-    dataset_df = pd.read_csv(f"{data_dir}/dataset.csv")
-
-    # get test set based on last 5% of the dataset
-    test_df = dataset_df.iloc[int(len(dataset_df) * 0.95)+1:].reset_index(drop=True)[:100]
-
+    test_df = pd.read_csv(f"{data_dir}/test.csv")
     results = []
-    for index, sample_row in test_df.iterrows():
-        # print progress
-        if index % 100 == 0:
-            print(f"Progress: {index}/{len(test_df)}")
 
-        # check if prediction is available
+    # Use tqdm to create a progress bar for the loop
+    for index, sample_row in tqdm(test_df.iterrows(), total=test_df.shape[0], desc="Evaluating samples"):
+        # Check if prediction is available
         if not os.path.exists(f"{pred_dir}/y_0_{index}.png"):
             print(f"Prediction for sample {index} not found.")
             continue
-        mae, mape, mae_in_sight, mae_not_in_sight = evaluate_sample(os.path.join(data_dir, sample_row.soundmap), f"{pred_dir}/y_0_{index}.png", os.path.join(data_dir, sample_row.osm)) # adjust prediction naming if needed
-        results.append([sample_row.sample_id, mae, mape, mae_in_sight, mae_not_in_sight])
+        mae, mape, mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight = evaluate_sample(os.path.join(data_dir, sample_row.soundmap), f"{pred_dir}/y_0_{index}.png", os.path.join(data_dir, sample_row.osm)) # adjust prediction naming if needed
+        results.append([sample_row.sample_id, mae, mape, mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight])
 
-    results = pd.DataFrame(results, columns=["sample_id", "MAE", "MAPE", "MAE_in_sight", "MAE_not_in_sight"])
-    results.to_csv(output, index=False)
-    print(results[[ "MAE", "MAPE", "MAE_in_sight", "MAE_not_in_sight"]].describe())
+    results_df = pd.DataFrame(results, columns=["sample_id", "MAE", "MAPE", "MAE_in_sight", "MAE_not_in_sight", "MAPE_in_sight", "MAPE_not_in_sight"])
+    results_df.to_csv(output, index=False)
+    print(results_df[["MAE", "MAPE", "MAE_in_sight", "MAE_not_in_sight", "MAPE_in_sight", "MAPE_not_in_sight"]].describe())
