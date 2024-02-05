@@ -14,7 +14,8 @@ The data collection methodology involves sourcing information via the Overpass A
 The dataset used for evaluation is publicly available and published via Zenodo, ensuring easy access and reproducibility of our research findings [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10609793.svg)](https://doi.org/10.5281/zenodo.10609793).
 
 ## Code for baseline experiments
-The code is located at the [GitHub repository](https://github.com/urban-sound-data/urban-sound-data)
+The code is located at the [GitHub repository](https://github.com/urban-sound-data/urban-sound-data).
+
 This script evaluates the accuracy of predicted sound propagation against true data using metrics such as Mean Absolute Error (MAE) and Mean Absolute Percentage Error (MAPE), with special consideration for visibility based on Open Street Map data.
 
 ```
