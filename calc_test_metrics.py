@@ -190,7 +190,7 @@ if __name__ == "__main__":
     # Use tqdm to create a progress bar for the loop
     for index, sample_row in tqdm(test_df.iterrows(), total=test_df.shape[0], desc="Evaluating samples"):
         # Check if prediction is available
-        if not os.path.exists(f"{pred_dir}/y_0_{index}.png"):
+        if not os.path.exists(f"{pred_dir}/y_{index}.png"):
             print(f"Prediction for sample {index} not found.")
             continue
         mae, mape, mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight = evaluate_sample(os.path.join(data_dir, sample_row.soundmap), f"{pred_dir}/y_0_{index}.png", os.path.join(data_dir, sample_row.osm)) # adjust prediction naming if needed
