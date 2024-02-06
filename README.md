@@ -64,26 +64,22 @@ After running the script, you can find summary statistics in the console output,
 
 ## Baseline Results
 
-The table below presents baseline performance metrics for various architectural approaches, encompassing combined mean absolute error (MAE) and weighted mean absolute percentage error (wMAPE), alongside specific line-of-sight (LoS) and non-line-of-sight (NLoS) metrics. These results are published in our paper, which can be accessed [here]().
+The table below presents baseline performance metrics for various architectural approaches, encompassing combined mean absolute error (MAE) and weighted mean absolute percentage error (wMAPE), alongside specific line-of-sight (LoS) and non-line-of-sight (NLoS) metrics. 
 
-| Architecture | Condition   | Combined MAE | Combined wMAPE | LoS MAE | NLoS MAE | LoS wMAPE | NLoS wMAPE |
-|--------------|-------------|--------------|----------------|---------|----------|-----------|------------|
-| UNet         | Baseline    | 2.08         | 19.45          | 2.29    | 1.73     | 12.91     | 37.57      |
-| UNet         | Diffraction | 1.65         | 9.75           | 0.94    | 3.27     | 4.22      | 22.36      |
-| UNet         | Reflection  | 3.22         | 31.87          | 2.29    | 5.72     | 12.75     | 80.46      |
-| UNet         | Name        | 1.77         | 20.59          | 1.03    | 2.29     | 8.23      | 38.13      |
-| GAN          | Baseline    | 1.52         | 8.21           | 1.73    | 1.19     | 9.36      | 6.75       |
-| GAN          | Diffraction | 1.66         | 8.03           | 0.91    | 3.36     | 3.51      | 18.06      |
-| GAN          | Reflection  | 2.88         | 16.57          | 2.14    | 4.79     | 11.30     | 30.67      |
-| GAN          | Name        | 1.76         | 19.12          | 1.37    | 2.67     | 9.80      | 40.68      |
-| Diffusion    | Baseline    | 2.57         | 25.21          | 2.42    | 3.26     | 15.57     | 51.08      |
-| Diffusion    | Diffraction | 2.12         | 11.85          | 1.59    | 3.27     | 8.25      | 20.30      |
-| Diffusion    | Reflection  | 4.14         | 35.20          | 2.74    | 7.93     | 17.85     | 80.38      |
-| Diffusion    | Name        | 1.57         | 21.55          | 1.26    | 2.21     | 13.10     | 40.57      |
-
-
-
-
+| Condition   | Architecture | Combined MAE | Combined wMAPE | LoS MAE | NLoS MAE | LoS wMAPE | NLoS wMAPE |
+|-------------|--------------|--------------|----------------|---------|----------|-----------|------------|
+| Baseline    | UNet         | 2.08         | 19.45          | 2.29    | 1.73     | 12.91     | 37.57      |
+| Baseline    | GAN          | 1.52         | 8.21           | 1.73    | 1.19     | 9.36      | 6.75       |
+| Baseline    | Diffusion    | 2.57         | 25.21          | 2.42    | 3.26     | 15.57     | 51.08      |
+| Diffraction | UNet         | 1.65         | 9.75           | 0.94    | 3.27     | 4.22      | 22.36      |
+| Diffraction | GAN          | 1.66         | 8.03           | 0.91    | 3.36     | 3.51      | 18.06      |
+| Diffraction | Diffusion    | 2.12         | 11.85          | 1.59    | 3.27     | 8.25      | 20.30      |
+| Reflection  | UNet         | 3.22         | 31.87          | 2.29    | 5.72     | 12.75     | 80.46      |
+| Reflection  | GAN          | 2.88         | 16.57          | 2.14    | 4.79     | 11.30     | 30.67      |
+| Reflection  | Diffusion    | 4.14         | 35.20          | 2.74    | 7.93     | 17.85     | 80.38      |
+| Name        | UNet         | 1.77         | 20.59          | 1.03    | 2.29     | 8.23      | 38.13      |
+| Name        | GAN          | 1.76         | 19.12          | 1.37    | 2.67     | 9.80      | 40.68      |
+| Name        | Diffusion    | 1.57         | 21.55          | 1.26    | 2.21     | 13.10     | 40.57      |
 
 ## License
 This dataset is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
