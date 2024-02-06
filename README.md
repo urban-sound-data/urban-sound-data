@@ -57,8 +57,8 @@ The script generates an evaluation.csv file with the following columns:
 - wMAPE: weighted Mean Absolute Percentage Error across the entire sound map.
 - LoS_MAE: MAE for areas in sight of the sound source, based on OSM data.
 - NLoS_MAE: MAE for areas not in sight of the sound source.
-- LoS_wMAPE: MAPE for areas in sight of the sound source.
-- NLoS_wMAPE: MAPE for areas not in sight of the sound source.
+- LoS_wMAPE: weighted MAPE for areas in sight of the sound source.
+- NLoS_wMAPE: weighted MAPE for areas not in sight of the sound source.
 
 After running the script, you can find summary statistics in the console output, providing an overview of the evaluation metrics across all samples.
 
