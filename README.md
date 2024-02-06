@@ -54,11 +54,11 @@ The script generates an evaluation.csv file with the following columns:
 
 - sample_id: Unique identifier for each sample.
 - MAE: Mean Absolute Error across the entire sound map.
-- MAPE: Mean Absolute Percentage Error across the entire sound map.
-- MAE_in_sight: MAE for areas in sight of the sound source, based on OSM data.
-- MAE_not_in_sight: MAE for areas not in sight of the sound source.
-- MAPE_in_sight: MAPE for areas in sight of the sound source.
-- MAPE_not_in_sight: MAPE for areas not in sight of the sound source.
+- wMAPE: weighted Mean Absolute Percentage Error across the entire sound map.
+- LoS_MAE: MAE for areas in sight of the sound source, based on OSM data.
+- NLoS_MAE: MAE for areas not in sight of the sound source.
+- LoS_wMAPE: MAPE for areas in sight of the sound source.
+- NLoS_wMAPE: MAPE for areas not in sight of the sound source.
 
 After running the script, you can find summary statistics in the console output, providing an overview of the evaluation metrics across all samples.
 
@@ -80,9 +80,9 @@ The table below presents baseline performance metrics for various architectural 
 | Reflection  | GAN          | **2.88**         | **16.57**          | **2.14**    | **4.79**     | **11.30**     | **30.67**      |
 | Reflection  | Diffusion    | 4.14         | 35.20          | 2.74    | 7.93     | 17.85     | 80.38      |
 |             |              |                 |                 |                |                |                |                |
-| Name        | UNet         | 1.77         | 20.59          | 1.39    | 2.63     | 10.10      | 45.15      |
-| Name        | GAN          | 1.76         | **19.12**          | 1.37    | 2.67     | **9.80**      | 40.68      |
-| Name        | Diffusion    | **1.57**         | 21.45          | **1.26**    | **2.21**     | 13.07     | **40.38**      |
+| Combined    | UNet         | 1.77         | 20.59          | 1.39    | 2.63     | 10.10      | 45.15      |
+| Combined    | GAN          | 1.76         | **19.12**          | 1.37    | 2.67     | **9.80**      | 40.68      |
+| Combined    | Diffusion    | **1.57**         | 21.45          | **1.26**    | **2.21**     | 13.07     | **40.38**      |
 
 ## License
 This dataset is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
