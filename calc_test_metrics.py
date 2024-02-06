@@ -6,6 +6,8 @@ import argparse
 import os
 import pandas as pd
 from tqdm import tqdm 
+import matplotlib.pyplot as plt
+
 
 def MAE(y_true, y_pred):
     return np.mean(np.abs(y_true - y_pred))
@@ -20,7 +22,6 @@ def calc_mae(true_path, pred_path):
         Image.open(true_path).convert("L"),
         dtype=np.float32
     ) / 255) * 100
-        
     return MAE(true_noisemap, pred_noisemap)
 
 def calc_mape(true_path, pred_path):
@@ -161,7 +162,6 @@ def calculate_sight_error(true_path, pred_path, osm_path):
 
     return masked_mae(in_sight_soundmap, in_sight_pred_soundmap), masked_mae(not_in_sight_soundmap, not_in_sight_pred_soundmap), masked_mape(in_sight_soundmap, in_sight_pred_soundmap), masked_mape(not_in_sight_soundmap, not_in_sight_pred_soundmap)
 
-
 def evaluate_sample(true_path, pred_path, osm_path=None) -> (float, float, float, float):
     mae = calc_mae(true_path, pred_path)
     mape = calc_mape(true_path, pred_path)
@@ -193,9 +193,9 @@ if __name__ == "__main__":
         if not os.path.exists(f"{pred_dir}/y_{index}.png"):
             print(f"Prediction for sample {index} not found.")
             continue
-        mae, mape, mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight = evaluate_sample(os.path.join(data_dir, sample_row.soundmap), f"{pred_dir}/y_0_{index}.png", os.path.join(data_dir, sample_row.osm)) # adjust prediction naming if needed
+        mae, mape, mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight = evaluate_sample(os.path.join(data_dir, sample_row.soundmap), f"{pred_dir}/y_{index}.png", os.path.join(data_dir, sample_row.osm)) # adjust prediction naming if needed
         results.append([sample_row.sample_id, mae, mape, mae_in_sight, mae_not_in_sight, mape_in_sight, mape_not_in_sight])
 
-    results_df = pd.DataFrame(results, columns=["sample_id", "MAE", "MAPE", "MAE_in_sight", "MAE_not_in_sight", "MAPE_in_sight", "MAPE_not_in_sight"])
+    results_df = pd.DataFrame(results, columns=["sample_id", "MAE", "MAPE", "LoS_MAE", "NLoS_MAE", "LoS_wMAPE", "NLoS_wMAPE"])
     results_df.to_csv(output, index=False)
-    print(results_df[["MAE", "MAPE", "MAE_in_sight", "MAE_not_in_sight", "MAPE_in_sight", "MAPE_not_in_sight"]].describe())
+    print(results_df[["MAE", "MAPE", "LoS_MAE", "NLoS_MAE", "LoS_wMAPE", "NLoS_wMAPE"]].describe())
