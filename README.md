@@ -80,9 +80,9 @@ The table below presents baseline performance metrics for various architectural 
 | Reflection  | GAN          | **2.88**         | **16.57**          | **2.14**    | **4.79**     | **11.30**     | **30.67**      |
 | Reflection  | Diffusion    | 4.14         | 35.20          | 2.74    | 7.93     | 17.85     | 80.38      |
 |             |              |                 |                 |                |                |                |                |
-| Name        | UNet         | 1.77         | 20.59          | **1.03**    | **2.29**     | **8.23**      | **38.13**      |
-| Name        | GAN          | **1.76**         | **19.12**          | 1.37    | 2.67     | 9.80      | 40.68      |
-| Name        | Diffusion    | 1.57         | 21.55          | 1.26    | 2.21     | 13.10     | 40.57      |
+| Name        | UNet         | 1.77         | 20.59          | 1.39    | 2.63     | 10.10      | 45.15      |
+| Name        | GAN          | 1.76         | **19.12**          | 1.37    | 2.67     | **9.80**      | 40.68      |
+| Name        | Diffusion    | **1.57**         | 21.45          | **1.26**    | **2.21**     | 13.07     | **40.38**      |
 
 ## License
 This dataset is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
