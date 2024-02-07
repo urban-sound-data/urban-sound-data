@@ -41,6 +41,9 @@ project_root/
 │
 └── calc_test_metrics.py
 ```
+
+The indexing system for predicted sound propagation images in the pred folder aligns directly with the test.csv dataframe rows. Each predicted image file, named as y_{index}.png, corresponds to the test data's row at the same index, with index 0 referring to the dataframe's first row. 
+
 ### Running the Script
 
 To run the evaluation, navigate to your project's root directory and execute the evaluate.py script with the required arguments:
