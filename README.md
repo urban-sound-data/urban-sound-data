@@ -13,6 +13,9 @@ Supplementing the urban structural images, the dataset includes sound distributi
 
 The data collection methodology involves sourcing information via the Overpass API, subsequently refined and verified using GeoPandas to ensure the dataset's integrity and consistency. For researchers and experts interested in exploring the intricacies of sound simulation, additional insights can be obtained from the NoiseModelling framework [documentation](https://noisemodelling.readthedocs.io/en/latest/).
 
+Additionaly, a comprehensive description of the dataset is given as a [Datacard](https://github.com/urban-sound-data/urban-sound-data/blob/main/documentation/datacard.pdf).
+
+
 ## Download Dataset
 
 The dataset used for evaluation is publicly available and published via Zenodo, ensuring easy access and reproducibility of our research findings [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10609793.svg)](https://doi.org/10.5281/zenodo.10609793).
