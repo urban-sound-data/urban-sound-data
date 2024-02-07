@@ -1,0 +1,11 @@
+lat,long,db,soundmap,osm,temperature,humidity,yaw,sample_id,soundmap_512
+47.87121117272977,11.379522101201664,{'lwd500': 95},./soundmaps/256/23748_LEQ_256.png,./buildings/osm_23748.png,15,70,,23748,./soundmaps/512/23748_LEQ_512.png
+47.82374874035524,11.97448904413034,{'lwd500': 95},./soundmaps/256/23750_LEQ_256.png,./buildings/osm_23750.png,15,70,,23750,./soundmaps/512/23750_LEQ_512.png
+48.261494089395626,11.999618079576962,{'lwd500': 95},./soundmaps/256/23751_LEQ_256.png,./buildings/osm_23751.png,15,70,,23751,./soundmaps/512/23751_LEQ_512.png
+48.08373353091248,11.863034488197773,{'lwd500': 95},./soundmaps/256/23752_LEQ_256.png,./buildings/osm_23752.png,15,70,,23752,./soundmaps/512/23752_LEQ_512.png
+47.94108944949961,11.251374688113929,{'lwd500': 95},./soundmaps/256/23753_LEQ_256.png,./buildings/osm_23753.png,15,70,,23753,./soundmaps/512/23753_LEQ_512.png
+48.259598761756806,11.567966093558336,{'lwd500': 95},./soundmaps/256/23754_LEQ_256.png,./buildings/osm_23754.png,15,70,,23754,./soundmaps/512/23754_LEQ_512.png
+48.17184855811246,11.354779381061586,{'lwd500': 95},./soundmaps/256/23755_LEQ_256.png,./buildings/osm_23755.png,15,70,,23755,./soundmaps/512/23755_LEQ_512.png
+48.32114437746223,11.798887026852183,{'lwd500': 95},./soundmaps/256/23756_LEQ_256.png,./buildings/osm_23756.png,15,70,,23756,./soundmaps/512/23756_LEQ_512.png
+48.15313461161491,11.480458814978077,{'lwd500': 95},./soundmaps/256/23757_LEQ_256.png,./buildings/osm_23757.png,15,70,,23757,./soundmaps/512/23757_LEQ_512.png
+47.868149684027856,11.156810334920644,{'lwd500': 95},./soundmaps/256/23758_LEQ_256.png,./buildings/osm_23758.png,15,70,,23758,./soundmaps/512/23758_LEQ_512.png
