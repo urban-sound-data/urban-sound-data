@@ -28,15 +28,16 @@ This script evaluates the accuracy of predicted sound propagation against true d
 ```
 project_root/
 │
-├── urban_sound_25k_baseline/ # download this via DOI
-│   ├── test/
-│   │   ├── test.csv
-│   │   ├── soundmaps/
-│   │   ├── buildings/
-│   │
-│   └── pred/                 # your predictions
-│       ├── y_0.png
-│       └── ...
+├── data/                         # Dedicated data folder
+│   └── urban_sound_25k_baseline/ # download this via provided DOI
+│       ├── test/
+│       │   ├── test.csv
+│       │   ├── soundmaps/
+│       │   └── buildings/
+│       │
+│       └── pred/                 # your predictions
+│           ├── y_0.png
+│           └── ...
 │
 └── calc_test_metrics.py
 ```
