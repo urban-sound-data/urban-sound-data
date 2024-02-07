@@ -6,7 +6,7 @@ To understand the capabilities of generative models in simulating physical pheno
 
 This dataset is assembled for research into urban sound propagation, comprising 25,000 data points across 10 diverse cities. Each city is represented by 2,500 locations, offering a comprehensive analysis of various urban configurations. The dataset utilizes OpenStreetMap (OSM) imagery to detail the urban layout within a 500m x 500m area for each location, where buildings are delineated with black pixels and open spaces with white pixels.
 
-![alt text](figures/sample_overview.png "Title")
+![dataset_overview](figures/sample_overview.png "Dataset Overview")
 
 
 Supplementing the urban structural images, the dataset includes sound distribution maps at resolutions of 512x512 and 256x256. These maps are precisely generated through the [NoiseModelling v4.0](https://github.com/Universite-Gustave-Eiffel/NoiseModelling) framework, an advanced simulation tool engineered for accurate modeling of sound dynamics within urban environments.
@@ -86,6 +86,20 @@ The table below presents baseline performance metrics for various architectural 
 | Combined    | UNet         | 1.77         | 20.59          | 1.39    | 2.63     | 10.10      | 45.15      |
 | Combined    | GAN          | 1.76         | **19.12**          | 1.37    | 2.67     | **9.80**      | 40.68      |
 | Combined    | Diffusion    | **1.57**         | 21.45          | **1.26**    | **2.21**     | 13.07     | **40.38**      |
+
+### Example Showcase:
+The following figures illustrate test set samples, showcasing the predictive outcomes from the U-Net, GAN, and diffusion model alongside the actual label for comparison.
+
+#### Baseline scenario:
+![baseline_comparison1](figures/baseline_1.png "Baseline Comparison 1")
+![baseline_comparison2](figures/baseline_2.png "Baseline Comparison 2")
+
+#### Reflection scenario:
+![reflection_comparison1](figures/reflection_1.png "Reflection Comparison 1")
+![reflection_comparison2](figures/reflection_2.png "Reflection Comparison 2")
+
+
+
 
 ## License
 This dataset is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
