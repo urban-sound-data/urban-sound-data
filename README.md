@@ -104,8 +104,13 @@ The following figures illustrate test set samples, showcasing the predictive out
 ![reflection_comparison1](figures/reflection_1.png "Reflection Comparison 1")
 ![reflection_comparison2](figures/reflection_2.png "Reflection Comparison 2")
 
-
-
-
 ## License
 This dataset is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+
+## Funding Acknowledgement
+We express our gratitude for the financial support provided by the German Federal Ministry of Education and Research (BMBF). This project is part of the "Forschung an Fachhochschulen in Kooperation mit Unternehmen (FH-Kooperativ)" program, within the joint project "KI-Bohrer," and is funded under the grant number 13FH525KX1.
+
+<p align="center">
+  <img src="figures/bmbf_logo.png" alt="BMBF-Logo">
+</p>
