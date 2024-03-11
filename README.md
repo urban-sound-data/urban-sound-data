@@ -93,6 +93,13 @@ The table below presents baseline performance metrics for various architectural 
 | Combined    | GAN          | 1.76         | **19.12**          | 1.37    | 2.67     | **9.80**      | 40.68      |
 | Combined    | Diffusion    | **1.57**         | 21.45          | **1.26**    | **2.21**     | 13.07     | **40.38**      |
 
+### Contribute to the Leaderboard
+
+We welcome contributions from the research community! If you have conducted research on sound propagation prediction and have results that outperform those listed in our leaderboard, or if you've developed a new architectural approach that shows promise, we invite you to share your findings with us.
+
+Please submit your results, along with a link to your publication, to martin.spitznagel@hs-offenburg.de. Submissions should include detailed performance metrics and a description of the methodology used. Accepted contributions will be updated on the leaderboard.
+
+
 ### Example Showcase:
 The following figures illustrate test set samples, showcasing the predictive outcomes from the U-Net, GAN, and diffusion model alongside the actual label for comparison.
 
