@@ -111,6 +111,23 @@ The following figures illustrate test set samples, showcasing the predictive out
 ![reflection_comparison1](figures/reflection_1.png "Reflection Comparison 1")
 ![reflection_comparison2](figures/reflection_2.png "Reflection Comparison 2")
 
+## Paper
+Accepted at the [Data-centric Machine Learning Research (DMLR) Workshop](https://dmlr.ai/) at ICLR 2024.
+
+Preprint is available here: [Urban Sound Propagation: a Benchmark for 1-Step Generative Modeling of Complex Physical Systems](https://arxiv.org/abs/2403.10904).
+
+Citation:
+```
+@misc{spitznagel2024urban,
+      title={Urban Sound Propagation: a Benchmark for 1-Step Generative Modeling of Complex Physical Systems}, 
+      author={Martin Spitznagel and Janis Keuper},
+      year={2024},
+      eprint={2403.10904},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD}
+}
+```
+
 ## License
 This dataset is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
